@@ -613,11 +613,7 @@ AC15milNote:add_action(SPACE, null)
 AC15milNote:add_action("                    For «Only Me»:", null)
 AC15milNote:add_action("         Activate option on cuts screen", null)
 
-		cut_presets = {
-			"Select",
-			"85 All",
-			"100 All"
-		}
+		cut_presets = {"85 All", "100 All","125 All","150 All","200 All", "441 All" }
 
 		a9 = 1
 	local function ApartmentCutsPresetter(cut)
@@ -629,11 +625,16 @@ AC:add_array_item("Presets", cut_presets,
 		return a9
 	end,
 	function(preset)
-		if preset == 2 then
-			ApartmentCutsPresetter(85)
-		elseif preset == 3 then
-			ApartmentCutsPresetter(100)
+		ammount=100
+		if preset == 1 then 	ammount = 85
+		elseif preset == 2 then	ammount = 100
+		elseif preset == 3 then	ammount = 125
+		elseif preset == 4 then	ammount = 150
+		elseif preset == 5 then	ammount = 200
+		elseif preset == 6 then	ammount = 441
 		end
+
+		ApartmentCutsPresetter(ammount)
 		a9 = preset
 	end)
 
@@ -1141,11 +1142,15 @@ CPC:add_array_item("Presets", cut_presets,
 		return a22
 	end,
 	function(preset)
-		if preset == 2 then
-			CutsPresetter(CPCg1, CPCg4, 85)
-		elseif preset == 3 then
-			CutsPresetter(CPCg1, CPCg4, 100)
+		ammount=100
+		if preset == 1 then 	ammount = 85
+		elseif preset == 2 then	ammount = 100
+		elseif preset == 3 then	ammount = 125
+		elseif preset == 4 then	ammount = 150
+		elseif preset == 5 then	ammount = 200
+		elseif preset == 6 then	ammount = 441
 		end
+		CutsPresetter(CPCg1, CPCg4, ammount )
 		a22 = preset
 	end)
 
@@ -1203,14 +1208,14 @@ CPCLNote:add_action("                and come back online", null)
 			FMC20:set_float(CPPCCl, 100)
 		end
 	end
-	local function CayoHeckerToggler(Enabled)
+	local function CayoHackerToggler(Enabled)
 		if Enabled then
-			hecker_hotkey = menu.register_hotkey(72, CayoBypasses)
+			hacker_hotkey = menu.register_hotkey(72, CayoBypasses)
 		else
-			menu.remove_hotkey(hecker_hotkey)
+			menu.remove_hotkey(hacker_hotkey)
 		end
 	end
-CPE:add_toggle("Hecker", function() return a24 end, function() a24 = not a24 CayoHeckerToggler(a24) end)
+CPE:add_toggle("Hacker", function() return a24 end, function() a24 = not a24 CayoHackerToggler(a24) end)
 
 		a25 = false
 	local function CayoWomansBagToggler(Enabled)
@@ -1254,7 +1259,7 @@ CPE:add_action(SPACE, null)
 
 CPENote = CPE:add_submenu("Read Me")
 
-CPENote:add_action("                           Hecker:", null)
+CPENote:add_action("                           Hacker:", null)
 CPENote:add_action(" Pressing «H» will trigger bypass any hack", null)
 CPENote:add_action(SPACE, null)
 CPENote:add_action("                      Woman's Bag:", null)
@@ -1734,11 +1739,16 @@ DCC:add_array_item("Presets", cut_presets,
 		return a43
 	end,
 	function(preset)
-		if preset == 2 then
-			CutsPresetter(DCCg1, DCCg4, 85)
-		elseif preset == 3 then
-			CutsPresetter(DCCg1, DCCg4, 100)
+		ammount=100
+		if preset == 1 then 	ammount = 85
+		elseif preset == 2 then	ammount = 100
+		elseif preset == 3 then	ammount = 125
+		elseif preset == 4 then	ammount = 150
+		elseif preset == 5 then	ammount = 200
+		elseif preset == 6 then	ammount = 441
 		end
+
+		CutsPresetter(DCCg1, DCCg4, ammount )
 		a43 = preset
 	end)
 
@@ -1778,15 +1788,17 @@ DCE:add_toggle("Autograbber", function() return b12 end, function() b12 = not b1
 			FMC:set_int(DCKHl, 5)
 		end
 	end
-	local function CasinoHeckerToggler(Enabled)
+	local function CasinoHackerToggler(Enabled)
 		if Enabled then
-			hecker_hotkey = menu.register_hotkey(72, CasinoBypasses)
+			hacker_hotkey = menu.register_hotkey(72, CasinoBypasses)
 		else
-			menu.remove_hotkey(hecker_hotkey)
+			menu.remove_hotkey(hacker_hotkey)
 		end
 	end
-DCE:add_toggle("Hecker", function() return a44 end, function() a44 = not a44 CasinoHeckerToggler(a44) end)
-
+DCE:add_toggle("Hacker", function() return a44 end, function() a44 = not a44 CasinoHackerToggler(a44) end)
+DCE:add_action("Kill All NPCs",function() menu.kill_all_npcs()end)
+DCE:add_action("Remove Cameras",function() menu.remove_cctvs()end)
+DCE:add_action("Teleport Forward",function() menu.teleport_forward()end)
 DCE:add_action("Bypass Fingerprint Hack",
 	function()
 		if FMC:get_int(DCFHl) == 4 then
@@ -1822,7 +1834,7 @@ DCENote = DCE:add_submenu("Read Me")
 DCENote:add_action("                    Cooldown Killer:", null)
 DCENote:add_action("    Use outside arcade, wait up to 5 mins", null)
 DCENote:add_action(SPACE, null)
-DCENote:add_action("                           Hecker:", null)
+DCENote:add_action("                           Hacker:", null)
 DCENote:add_action(" Pressing «H» will trigger bypass any hack", null)
 DCENote:add_action(SPACE, null)
 DCENote:add_action("                For the first robbery:", null)
@@ -1932,11 +1944,16 @@ DC:add_array_item("Presets", cut_presets,
 		return a49
 	end,
 	function(preset)
-		if preset == 2 then
-			CutsPresetter(DCg1, DCg4, 85)
-		elseif preset == 3 then
-			CutsPresetter(DCg1, DCg4, 100)
+		ammount=100
+		if preset == 1 then 	ammount = 85
+		elseif preset == 2 then	ammount = 100
+		elseif preset == 3 then	ammount = 125
+		elseif preset == 4 then	ammount = 150
+		elseif preset == 5 then	ammount = 200
+		elseif preset == 6 then	ammount = 441
 		end
+
+		CutsPresetter(DCg1, DCg4, ammount )
 		a49 = preset
 	end)
 
@@ -6493,6 +6510,19 @@ CustomWheelsNote:add_action("      disable after purchasing the wheels", null)
 
 CustomPlate = CustomModifications:add_submenu("Custom Plate")
 
+CustomPlate:add_array_item("Numplate Type", {"1","2","3","4","5","6","7","8","9","10","11","12","13"}
+	function()
+		if localplayer ~= nil and localplayer:is_in_vehicle() then
+			return localplayer:get_current_vehicle():get_number_plate_index()
+		end
+	
+	end,
+	function(num_type)
+		if localplayer ~= nil and localplayer:is_in_vehicle() then
+			localplayer:get_current_vehicle():set_number_plate_index(num_type)
+		end
+	end)
+
 		plate_chars = {
 			".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
@@ -6604,7 +6634,7 @@ CustomPlate:add_array_item("Symbol #8", plate_chars,
 		def_num_cur28 = number28
 	end)
 
-local function PlateChecker(space)
+local function PlateChacker(space)
 		if space == "." then
 			return " "
 		else
@@ -6613,7 +6643,7 @@ local function PlateChecker(space)
 	end
 CustomPlate:add_bare_item("",
 	function()
-		checked_plate = PlateChecker(def_num21) .. PlateChecker(def_num22) .. PlateChecker(def_num23) .. PlateChecker(def_num24) .. PlateChecker(def_num25) .. PlateChecker(def_num26) .. PlateChecker(def_num27) .. PlateChecker(def_num28)
+		checked_plate = PlateChacker(def_num21) .. PlateChacker(def_num22) .. PlateChacker(def_num23) .. PlateChacker(def_num24) .. PlateChacker(def_num25) .. PlateChacker(def_num26) .. PlateChacker(def_num27) .. PlateChacker(def_num28)
 		new_plate = def_num21 .. def_num22 .. def_num23 .. def_num24 .. def_num25 .. def_num26 .. def_num27 .. def_num28
 		return "Apply Plate: " .. checked_plate
 	end,
