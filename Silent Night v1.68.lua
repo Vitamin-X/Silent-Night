@@ -6510,7 +6510,7 @@ CustomWheelsNote:add_action("      disable after purchasing the wheels", null)
 
 CustomPlate = CustomModifications:add_submenu("Custom Plate")
 
-CustomPlate:add_array_item("Numplate Type", {"1","2","3","4","5","6","7","8","9","10","11","12","13"}
+CustomPlate:add_array_item("Numplate Type", {"1","2","3","4","5","6","7","8","9","10","11","12","13"},
 	function()
 		if localplayer ~= nil and localplayer:is_in_vehicle() then
 			return localplayer:get_current_vehicle():get_number_plate_index()
