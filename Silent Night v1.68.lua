@@ -6510,16 +6510,32 @@ CustomWheelsNote:add_action("      disable after purchasing the wheels", null)
 
 CustomPlate = CustomModifications:add_submenu("Custom Plate")
 
-CustomPlate:add_array_item("Numplate Type", {"1","2","3","4","5","6","7","8","9","10","11","12","13"},
+plate_types =  {
+	"Blue White 2",
+	"Yellow on Black",
+	"Yellow on Blue",
+	"Blue White 1",
+	"Blue White 3",
+	"Yankton",
+	"eCola",
+	"Las Venturas",
+	"Liberty City",
+	"LS Car Meet",
+	"LS Panic",
+	"LS Pounders",
+	"Sprunk"
+}
+
+CustomPlate:add_array_item("Numplate Type", plate_types,
 	function()
 		if localplayer ~= nil and localplayer:is_in_vehicle() then
-			return localplayer:get_current_vehicle():get_number_plate_index()
+			return localplayer:get_current_vehicle():get_number_plate_index()+1
 		end
 	
 	end,
 	function(num_type)
 		if localplayer ~= nil and localplayer:is_in_vehicle() then
-			localplayer:get_current_vehicle():set_number_plate_index(num_type)
+			localplayer:get_current_vehicle():set_number_plate_index(num_type-1)
 		end
 	end)
 
